@@ -204,15 +204,24 @@
 			createRigidBody( ball, ballShape, ballMass, pos, quat );
 			ball.userData.physicsBody.setFriction( 0.5 );
 
+			this.mPlayer = new Player();
+
+
+/*
                     	var mBrickMass = 0.5;
                         var mBrickLength = 1.2;
                         var mBrickDepth = 0.6;
                         var mBrickHeight = mBrickLength * 0.5;
 
-			var mPlayer = createParalellepiped( mBrickDepth, mBrickHeight, mBrickLength, mBrickMass, pos, quat, createMaterial() );
+
+			var mPlayerPos = new THREE.Vector3();
+			mPlayerPos.set( -3, 30, 0 );
+			var mPlayerQuat = new THREE.Quaternion();
+			mPlayerQuat.set( 0, 0, 0, 1 );
+			var mPlayer = createParalellepiped( mBrickDepth, mBrickHeight, mBrickLength, mBrickMass, mPlayerPos, mPlayerQuat, createMaterial() );
 					mPlayer.castShadow = true;
 					mPlayer.receiveShadow = true;
-
+*/
 
 			// The rope
 			// Rope graphic object
