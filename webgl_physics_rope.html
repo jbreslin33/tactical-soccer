@@ -33,10 +33,13 @@
         <div id="container"><br /><br /><br /><br /><br />Loading...</div>
 
 	<script src="../three.js/build/three.js"></script>
+<script src="../three.js/examples/js/loaders/ColladaLoader.js"></script>
 	<script src="../three.js/examples/js/libs/ammo.js"></script>
 	<script src="../three.js/examples/js/controls/OrbitControls.js"></script>
 	<script src="../three.js/examples/js/Detector.js"></script>
 	<script src="../three.js/examples/js/libs/stats.min.js"></script>
+	
+	<script src="player.js"></script>
 
         <script>
 
@@ -198,6 +201,25 @@
 			quat.set( 0, 0, 0, 1 );
 			createRigidBody( ball, ballShape, ballMass, pos, quat );
 			ball.userData.physicsBody.setFriction( 0.5 );
+
+			//var mPlayer = new Player(pos,quat);
+			// Player
+var loader = new THREE.ColladaLoader();
+				loader.options.convertUpAxis = true;
+loader.load( "avatar.dae", function ( collada ) {
+					var object = collada.scene;
+					mixer = new THREE.AnimationMixer( object );
+					object.traverse( function ( child ) {
+						if ( child instanceof THREE.SkinnedMesh ) {
+							var clip = THREE.AnimationClip.parseAnimation( child.geometry.animation, child.geometry.bones );
+							mixer.clipAction( clip, child ).play();
+						}
+					} );
+					scene.add( object );
+				} );
+
+
+
 
 			// Wall
 			var brickMass = 0.5;
